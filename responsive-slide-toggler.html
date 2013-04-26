@@ -6,10 +6,10 @@
 			$(function () {
 				function animateAbout () {
 					if($('section.about-me').hasClass('active')) {
-						var top = "60px";					// this sets the original or your starting point
+						var top = "60px";			// this sets the original or your starting point
 						if( $(window).width() <= 900 ) {	// now IF the WINDOW is LESS THAN or EQUAL TO 900px
-							top = "160px";					// animate from the top 160px
-						};									// end statement
+							top = "160px";			// animate from the top 160px
+						};					// end statement
 						if( $(window).width() <= 750 ) {
 							top = "225px";
 						}
@@ -23,10 +23,10 @@
 							top = "500px";
 						}
 						$('section.about-me').animate({		// below is what your animation will do
-							opacity: 1,						// opacity will create the "fade in" look
-							top: top,						// top is calling your variable you stated up
-															// above based on what the window width is currently at
-						}, 550);							// this number is how long the animation will take
+							opacity: 1,			// opacity will create the "fade in" look
+							top: top,			// top is calling your variable you stated up
+											// above based on what the window width is currently at
+						}, 550);				// this number is how long the animation will take
 					}
 					else {
 						$('section.about-me').stop().animate({
@@ -36,9 +36,9 @@
 					}
 				}
 
-				$('.about-button').click(function () {				// this function is creating the toggle
+				$('.about-button').click(function () {			// this function is creating the toggle
 					$('section.about-me').toggleClass('active');	// turns the class "active" on and off
-					animateAbout();									// calling the function stated above for the animation
+					animateAbout();					// calling the function stated above for the animation
 					return false;
 				});
 				
@@ -59,7 +59,7 @@
 				$(window).resize(function () {
 					window.clearTimeout( resizeDebounce );
 					resizeDebounce = window.setTimeout( animateAbout, 150 );	// this is the PAUSE TIME after
-																				// the window is done resizing
+													// the window is done resizing
 				});
 			});
 		</script>
@@ -73,7 +73,11 @@
 	
 		<div class="about-button">About Me - click me</div>
 		<section class="about-me">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+			ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+			reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+			occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 		</section>
 		
 	</body>

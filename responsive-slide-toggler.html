@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script>
+			$(function () {
+				function animateAbout () {
+					if($('section.about-me').hasClass('active')) {
+						var top = "60px";					// this sets the original or your starting point
+						if( $(window).width() <= 900 ) {	// now IF the WINDOW is LESS THAN or EQUAL TO 900px
+							top = "160px";					// animate from the top 160px
+						};									// end statement
+						if( $(window).width() <= 750 ) {
+							top = "225px";
+						}
+						if( $(window).width() <= 600 ) {
+							top = "300px";
+						}
+						if( $(window).width() <= 500 ) {
+							top = "400px";
+						}
+						if( $(window).width() <= 400 ) {
+							top = "500px";
+						}
+						$('section.about-me').animate({		// below is what your animation will do
+							opacity: 1,						// opacity will create the "fade in" look
+							top: top,						// top is calling your variable you stated up
+															// above based on what the window width is currently at
+						}, 550);							// this number is how long the animation will take
+					}
+					else {
+						$('section.about-me').stop().animate({
+							opacity: 0,
+							top: "50px"
+						}, 400);
+					}
+				}
+
+				$('.about-button').click(function () {				// this function is creating the toggle
+					$('section.about-me').toggleClass('active');	// turns the class "active" on and off
+					animateAbout();									// calling the function stated above for the animation
+					return false;
+				});
+				
+				var resizeDebounce = null;
+				// When the window size changes, call this function
+				// Because on the desktop this function is called a TON
+				// in a single resize (it issues it for every few pixels changed)
+				// we need to "debounce" it
+				//
+				// Basically - WAIT until resizing is finished, THEN animate
+				//
+				// To do that, we set a timer to do the animation, and if
+				// we get another resize call before that timer expires we
+				// cancel the previous timer and set a new one.
+				//
+				// Eventually, when they are done resizing the window, the
+				// timer will fire and the resize will animate.
+				$(window).resize(function () {
+					window.clearTimeout( resizeDebounce );
+					resizeDebounce = window.setTimeout( animateAbout, 150 );	// this is the PAUSE TIME after
+																				// the window is done resizing
+				});
+			});
+		</script>
+		<style>
+			.about-button { border: 1px solid #000; background: #0FF; padding: 5px 10px; }
+			.about-me { background: #F00; position: fixed; width: 100%; top: 50px; opacity: 0 }
+		</style>
+	</head>
+	
+	<body>
+	
+		<div class="about-button">About Me - click me</div>
+		<section class="about-me">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</section>
+		
+	</body>
+	
+</html>
